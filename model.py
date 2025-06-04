@@ -35,4 +35,9 @@ class Model(nn.Module):
         Returns:
             torch.Tensor: Output tensor of shape (batch_size, num_gaze_outputs) for pitch and yaw.
         """
-        return self.swin_transformer(x)
+        return self.swin_transformer(x["face"])
+
+    def loss(self, x_in, label):
+        gaze = self.forward(x_in)
+        loss = self.loss_op(gaze, label)
+        return loss
