@@ -24,6 +24,8 @@ class Model(nn.Module):
             num_classes=num_gaze_outputs  # This adapts the head for our 2 gaze outputs
         )
 
+        self.loss_op = nn.L1Loss()
+
     def forward(self, x):
         """
         Forward pass of the model.
